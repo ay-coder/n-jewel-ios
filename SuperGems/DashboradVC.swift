@@ -22,6 +22,7 @@ class DashboradVC: UIViewController
 
     var iSelectedTab = Int()
     var isMenu = Bool()
+    var isCart = Bool()
     
     var arrWhatsNewData = NSMutableArray()
     var arrCategoryData = NSMutableArray()
@@ -161,6 +162,7 @@ class DashboradVC: UIViewController
     
     override func viewWillAppear(_ animated: Bool)
     {
+        print(isCart)
         iSelectedTab = 1
         if isMenu{
             iSelectedTab = 4
@@ -169,6 +171,10 @@ class DashboradVC: UIViewController
             print(iSelectedTab)
             swipeMenuView.jump(to: 3, animated: true)
             print(iSelectedTab)
+        }
+        else{
+            swipeMenuView.currentIndex = 0
+            swipeMenuView.jump(to:0, animated: true)
         }
         self.SetButtonSelected(iTag: iSelectedTab)
     }

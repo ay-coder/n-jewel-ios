@@ -277,6 +277,13 @@ class ViewCartVC: UIViewController
 //
         if bPresent == true
         {
+//            let storyTab = UIStoryboard(name: "Main", bundle: nil)
+//            let objCategoryDetailVC = storyTab.instantiateViewController(withIdentifier: "DashboradVC") as! DashboradVC
+//            objCategoryDetailVC.isCart = true
+            
+            if let presenter = presentingViewController as? DashboradVC {
+                presenter.isCart = true
+            }
             self.dismiss(animated: true, completion: nil)
         }
         else
