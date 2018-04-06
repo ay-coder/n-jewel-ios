@@ -56,10 +56,11 @@ class DashboradVC: UIViewController
     var array = ["FEATURED","WHAT'S NEW", "CATEGORIES", "TRADE SHOWS"]
     var dataCount: Int = 4
     
+    // MARK: - LifeCycle Methods
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        iSelectedTab = 1
+       
         
 //        var dic = NSMutableDictionary()
 //        dic[kkeydate] = "January 20 – January 22, 2018"
@@ -114,12 +115,7 @@ class DashboradVC: UIViewController
 //        arrScrollProduct.add(dic)
         
        
-//        if isMenu{
-//            iSelectedTab = 4
-//            swipeMenuView.currentIndex = 0
-//            swipeMenuView.jumpingToIndex = 3
-//            swipeMenuView.jump(to: 3, animated: true)
-//        }
+
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -160,8 +156,25 @@ class DashboradVC: UIViewController
         swipeMenuView.reloadData(options: options)
         
         
+        
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        iSelectedTab = 1
+        if isMenu{
+            iSelectedTab = 4
+            swipeMenuView.currentIndex = 0
+            swipeMenuView.jumpingToIndex = 3
+            print(iSelectedTab)
+            swipeMenuView.jump(to: 3, animated: true)
+            print(iSelectedTab)
+        }
+        self.SetButtonSelected(iTag: iSelectedTab)
+    }
+    
+    
+    // MARK: - Custom Scrollview Methods
     @objc func setScrollViewData(){
         //Scrollview
         scrollFeatured.delegate =  self
@@ -206,6 +219,7 @@ class DashboradVC: UIViewController
             scrollViewContentSize+=imageWidth + spacer
         }
     }
+    
     // MARK: - Scrollview Methods
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
         // Test the offset and calculate the current page after scrolling ends
@@ -218,10 +232,7 @@ class DashboradVC: UIViewController
         lblNewFeaturedSubTitle.text =  dic1[kkeysubTitle] as? String
         lblNewFeaturedTitle.text = dic1[kkeytitle] as? String
     }
-    override func viewWillAppear(_ animated: Bool)
-    {
-        self.SetButtonSelected(iTag: iSelectedTab)
-    }
+   
     
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer)
@@ -261,42 +272,14 @@ class DashboradVC: UIViewController
  
         if iTag == 1
         {
-            
-//            btnFeatured.isSelected = true
-//            btnWhatsNew.isSelected = false
-//            btnCategories.isSelected = false
-//
-//            btnFeatured.titleLabel?.font = UIFont (name: "Raleway-SemiBold", size: 14)
-//            btnWhatsNew.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//            btnCategories.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//
-//
-//            imgFeatured.isHidden = false
-//            imgWhatsNew.isHidden = true
-//            imgCategories.isHidden = true
-            
             vwFeatured.isHidden = false
             vwWhatsNew.isHidden = true
             vwCategories.isHidden = true
             vwShedule.isHidden = true
             self.getFeaturedData()
-            
-
         }
         else if iTag == 2
         {
-//            btnWhatsNew.titleLabel?.font = UIFont (name: "Raleway-SemiBold", size: 14)
-//            btnFeatured.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//            btnCategories.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//
-//            btnFeatured.isSelected = false
-//            btnWhatsNew.isSelected = true
-//            btnCategories.isSelected = false
-//
-//            imgFeatured.isHidden = true
-//            imgWhatsNew.isHidden = false
-//            imgCategories.isHidden = true
-            
             vwFeatured.isHidden = true
             vwWhatsNew.isHidden = false
             vwCategories.isHidden = true
@@ -306,19 +289,6 @@ class DashboradVC: UIViewController
         }
         else if iTag == 3
         {
-//            btnCategories.titleLabel?.font = UIFont (name: "Raleway-SemiBold", size: 14)
-//            btnFeatured.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//            btnWhatsNew.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//
-//            btnFeatured.isSelected = false
-//            btnWhatsNew.isSelected = false
-//            btnCategories.isSelected = true
-//
-//            imgFeatured.isHidden = true
-//            imgWhatsNew.isHidden = true
-//            imgCategories.isHidden = false
-            
-            
             vwFeatured.isHidden = true
             vwWhatsNew.isHidden = true
             vwCategories.isHidden = false
@@ -327,24 +297,10 @@ class DashboradVC: UIViewController
         }
         else if iTag == 4
         {
-//            btnCategories.titleLabel?.font = UIFont (name: "Raleway-SemiBold", size: 14)
-//            btnFeatured.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//            btnWhatsNew.titleLabel?.font = UIFont (name: "Raleway-Regular", size: 14)
-//
-//            btnFeatured.isSelected = false
-//            btnWhatsNew.isSelected = false
-//            btnCategories.isSelected = true
-//
-//            imgFeatured.isHidden = true
-//            imgWhatsNew.isHidden = true
-//            imgCategories.isHidden = false
-            
-            
             vwFeatured.isHidden = true
             vwWhatsNew.isHidden = true
             vwCategories.isHidden = true
             vwShedule.isHidden = false
-//            tblSchedule.reloadData()
             self.getScheduleData()
         }
     }
@@ -672,14 +628,20 @@ extension DashboradVC: SwipeMenuViewDelegate,SwipeMenuViewDataSource {
     
     func swipeMenuView(_ swipeMenuView: SwipeMenuView, didChangeIndexFrom fromIndex: Int, to toIndex: Int) {
         // Codes
-        if toIndex == 0{
-            iSelectedTab = 1
-        }else if toIndex == 1{
-            iSelectedTab = 2
-        }else if toIndex == 2{
-            iSelectedTab = 3
-        }else{
+        if isMenu{
             iSelectedTab = 4
+            swipeMenuView.currentIndex = 3
+            isMenu = false
+        }else{
+            if toIndex == 0{
+                iSelectedTab = 1
+            }else if toIndex == 1{
+                iSelectedTab = 2
+            }else if toIndex == 2{
+                iSelectedTab = 3
+            }else{
+                iSelectedTab = 4
+            }
         }
         self.SetButtonSelected(iTag: iSelectedTab)
     }
