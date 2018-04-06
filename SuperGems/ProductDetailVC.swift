@@ -36,7 +36,7 @@ class ProductDetailVC: UIViewController
         
         lblProductName.text = dicofProductDetail[kkeyproductTitle] as? String
         lblProductDescription.text = dicofProductDetail[kkeyproductDescription] as? String
-        lblPrice.text = "$\(dicofProductDetail[kkeyproductPrice] as! Int)"
+        lblPrice.text = "$\(dicofProductDetail[kkeyproductPrice] as! Float)"
         
         if dicofProductDetail[kkeyisWishList] as! Int == 1
         {

@@ -708,7 +708,7 @@ extension DashboradVC : UICollectionViewDataSource ,UICollectionViewDelegate,UIC
                 iHeightofDescription = size.height
             }
             
-            size = ("$\(dic[kkeyproductPrice] as! Int)".size(attributes: fontAttributes))
+            size = ("$\(dic[kkeyproductPrice] as! Float)".size(attributes: fontAttributes)) //nidhi
             iHeightofPrice = size.height
         }
         else
@@ -726,7 +726,7 @@ extension DashboradVC : UICollectionViewDataSource ,UICollectionViewDelegate,UIC
             }
             
 //              size = ("$\(dic[kkeyproductPrice] as! Int)".size(attributes: fontAttributes))
-            size = ("$\(dic[kkeyproductPrice] as! NSNumber)".size(attributes: fontAttributes)) //nidhi
+            size = ("$\(dic[kkeyproductPrice] as! Float)".size(attributes: fontAttributes)) //nidhi
             iHeightofPrice = size.height
         }
 
@@ -774,7 +774,7 @@ extension DashboradVC : UICollectionViewDataSource ,UICollectionViewDelegate,UIC
             
             cell.lblProductName.text = dic[kkeyproductTitle] as? String
             cell.lblProductDescription.text = dic[kkeyproductDescription] as? String
-            cell.lblPrice.text = "$\(dic[kkeyproductPrice] as! NSNumber)" //nidhi
+            cell.lblPrice.text = "$\(dic[kkeyproductPrice] as! Float)" //nidhi
         }
         else
         {
@@ -787,7 +787,7 @@ extension DashboradVC : UICollectionViewDataSource ,UICollectionViewDelegate,UIC
             
             cell.lblProductName.text = dic[kkeyproductTitle] as? String
             cell.lblProductDescription.text = dic[kkeyproductDescription] as? String
-            cell.lblPrice.text = "$\(dic[kkeyproductPrice] as! Int)"
+            cell.lblPrice.text = "$\(dic[kkeyproductPrice] as! Float)"
 
         }
         return cell

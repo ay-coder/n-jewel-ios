@@ -44,8 +44,8 @@ class ViewController: UIViewController
         btnSignup.titleLabel?.font = UIFont (name: "Raleway-Light", size: 24)
         btnLogin.titleLabel?.font = UIFont (name: "Raleway-Light", size: 24)
         
-        txtPassword.text = "SGJ1234"
-        txtUserName.text = "admin@sgj.com"
+//        txtPassword.text = "SGJ1234"
+//        txtUserName.text = "admin@sgj.com"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -250,6 +250,9 @@ class ViewController: UIViewController
     }
     
     //MARK: Signup Action
+    @IBAction func btnTermConditionClick(_ sender: Any) {
+        
+    }
     @IBAction func btnSIGNUPAction(_ sender: Any)
     {
         if (self.txtSigunpName.text?.isEmpty)!

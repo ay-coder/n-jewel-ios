@@ -13,7 +13,7 @@ open class ContentScrollView: UIScrollView {
 
     fileprivate var pageViews: [UIView] = []
 
-    public var currentIndex: Int = 0
+    fileprivate var currentIndex: Int = 0
 
     fileprivate var options: SwipeMenuViewOptions.ContentScrollView = SwipeMenuViewOptions.ContentScrollView()
 
