@@ -18,6 +18,7 @@ class ProductDetailVC: UIViewController
     @IBOutlet weak var btnAddtoCart: UIButton!
     @IBOutlet weak var btnAlreadyAddedtoCart: UIButton!
 
+    @IBOutlet var viewAddtoCart: UIView!
     @IBOutlet weak var scrHeightCT : NSLayoutConstraint!
     var dicofProductDetail = NSDictionary()
     var iImageCount = Int()
@@ -42,11 +43,13 @@ class ProductDetailVC: UIViewController
         {
             btnAddtoCart.isHidden = true
             btnAlreadyAddedtoCart.isHidden = false
+            viewAddtoCart.backgroundColor = UIColor.clear
         }
         else
         {
             btnAddtoCart.isHidden = false
             btnAlreadyAddedtoCart.isHidden = true
+            viewAddtoCart.backgroundColor = UIColor.white
         }
         
         
@@ -82,7 +85,7 @@ class ProductDetailVC: UIViewController
         
         clHeightCT.constant = CGFloat(268 * iImageCount)
         
-        scrHeightCT.constant = clHeightCT.constant + 260
+        scrHeightCT.constant = clHeightCT.constant + 100
         clImages.reloadData()
     }
 

@@ -135,7 +135,7 @@ extension CategoryDetailVC : UICollectionViewDataSource,UICollectionViewDelegate
             iHeightofDescription = size.height
         }
         
-        size = ("$\(dic[kkeyproductPrice] as! Int)".size(attributes: fontAttributes))
+        size = ("$\(dic[kkeyproductPrice] as! Float)".size(attributes: fontAttributes))
         iHeightofPrice = size.height
         
         return CGSize(width: MainScreen.width/2, height: (200.0 + iHeightofTitle + iHeightofDescription + iHeightofPrice))
@@ -164,7 +164,7 @@ extension CategoryDetailVC : UICollectionViewDataSource,UICollectionViewDelegate
             
             cell.lblProductName.text = dic[kkeyproductTitle] as? String
             cell.lblProductDescription.text = dic[kkeyproductDescription] as? String
-            cell.lblPrice.text = "$\(dic[kkeyproductPrice] as! Int)"
+            cell.lblPrice.text = "$\(dic[kkeyproductPrice] as! Float)"
         }
         return cell
     }
